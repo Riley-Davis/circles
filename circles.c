@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+
 typedef struct Circle {
     Vector2 pos;
     float radius;
@@ -20,6 +21,10 @@ bool circles_colliding(Circle circle1, Circle circle2){
     } 
 
     return false;
+}
+
+Color random_pretty_color(){
+    return ColorFromHSV(GetRandomValue(0, 360), 1, 1);
 }
 
 void thrust_to(Circle *circle, Vector2 coords, float speed){
@@ -45,13 +50,13 @@ int main(){
     circle1.pos = (Vector2) {100.0f, 100.0f};
     circle1.radius = 100;
     circle1.vel = (Vector2) {10.5, 10.5};
-    circle1.color = (Color) {GetRandomValue(0,255), GetRandomValue(0,255), GetRandomValue(0,255), 255};
+    circle1.color = random_pretty_color();
 
     Circle circle2;
     circle2.pos = (Vector2) {(float) screenWidth - 100, (float) screenHeight - 100};
     circle2.radius = 100;
     circle2.vel = (Vector2) {-10.5, -10.5};
-    circle2.color = (Color) {GetRandomValue(0,255), GetRandomValue(0,255), GetRandomValue(0,255), 255};
+    circle2.color = random_pretty_color();
 
     Circle follower1;
     follower1.pos = (Vector2) {100.0f, 100.0f};
@@ -92,20 +97,20 @@ int main(){
             if (circle1.pos.x >= screenWidth - 100 || circle1.pos.x <= 0 + 100){
                 circle1.vel.x *= -1;
 
-                circle1.color = (Color) {GetRandomValue(0,255), GetRandomValue(0,255), GetRandomValue(0,255), 255};
+                circle1.color = random_pretty_color();
             }
             if (circle1.pos.y >= screenHeight - 100 || circle1.pos.y <= 0 + 100){
                 circle1.vel.y *= -1;
-                circle1.color = (Color) {GetRandomValue(0,255), GetRandomValue(0,255), GetRandomValue(0,255), 255};
+                circle1.color = random_pretty_color();
             }
 
             if (circle2.pos.x >= screenWidth - 100 || circle2.pos.x <= 0 + 100){
                 circle2.vel.x *= -1;
-                circle2.color = (Color) {GetRandomValue(0,255), GetRandomValue(0,255), GetRandomValue(0,255), 255};
+                circle2.color = random_pretty_color();
             }
             if (circle2.pos.y >= screenHeight - 100 || circle2.pos.y <= 0 + 100){
                 circle2.vel.y *= -1;
-                circle2.color = (Color) {GetRandomValue(0,255), GetRandomValue(0,255), GetRandomValue(0,255), 255};
+                circle2.color = random_pretty_color();
             }
 
             if (circles_colliding(circle1, circle2)){
@@ -114,8 +119,8 @@ int main(){
                 circle2.vel.x *= -1;
                 circle2.vel.y *= -1;
 
-                circle1.color = (Color) {GetRandomValue(0,255), GetRandomValue(0,255), GetRandomValue(0,255), 255};
-                circle2.color = (Color) {GetRandomValue(0,255), GetRandomValue(0,255), GetRandomValue(0,255), 255};
+                circle1.color = random_pretty_color();
+                circle2.color = random_pretty_color();
             }
 
             DrawCircle(follower1.pos.x, follower1.pos.y, follower1.radius, follower1.color);
